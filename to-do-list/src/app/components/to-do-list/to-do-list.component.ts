@@ -26,12 +26,12 @@ export class ToDoListComponent {
   }
 
   deleteItem(id: number) {
-    let index = this.listItems.findIndex((listItem) => listItem.id === id);
+    const index = this.listItems.findIndex((listItem) => listItem.id === id);
     this.listItems.splice(index, 1);
   }
 
   addItem() {
-    let maxId = Math.max(...this.listItems.map((listItem) => listItem.id));
+    const maxId = Math.max(...this.listItems.map((listItem) => listItem.id));
     this.listItems.push({ id: maxId + 1, text: this.inputText });
     this.inputText = '';
   }

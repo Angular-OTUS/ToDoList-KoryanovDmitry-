@@ -1,4 +1,5 @@
-:host {
+.app-to-do-list {
+
   .to-do-list {
     display: flex;
     flex-direction: column;
@@ -18,11 +19,12 @@
     display: flex;
     justify-content: space-between;
     font-size: 18px;
-    padding-right: 20px;
   }
 
   .item-text {
+    display: block;
     padding: 20px;
+    font-size: 20px;
   }
 
   .item-list {
@@ -44,10 +46,26 @@
     padding-left: 10px;
   }
 
-  .add-task {
-    background-color: #e188e1;
+  .button {
     color: white;
-    border: 0;
+    border: none;
+    border-radius: 10%;
     font-size: 18px;
+  }
+
+  .button_add {
+    background-color: green;
+    cursor: pointer;
+  }
+
+  .button_delete {
+    background-color: red;
+    cursor: pointer;
+  }
+
+  .button:disabled {
+    cursor: none;
+    pointer-events: none;
+    opacity: 0.5;
   }
 }

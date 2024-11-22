@@ -1,22 +1,18 @@
 <section class="to-do-list">
   <h1>Todo List</h1>
 
+
   <ul class="item-list">
-    <li class="item">
-      <span class="item-text">Buy a new gaming laptop</span>
-      <button>Delete</button>
-    </li>
-    <li class="item">
-      <span class="item-text">Complete previous task</span>
-      <button>Delete</button>
-    </li>
-    <li class="item">
-      <span class="item-text">Create some angualr app</span>
-      <button>Delete</button>
-    </li>
+    @for (listItem of listItems; track $index) {
+      <li>
+        <app-to-do-list-item [listItem]="listItem" (deleteItemById)="deleteItem($event)"
+                             [ngClass]="'item'"></app-to-do-list-item>
+      </li>
+    }
   </ul>
   <div class="footer-form">
-    <input type="text" placeholder="Add your new todo" class="input"/>
-    <button class="add-task">Add task</button>
+    <input class="input" placeholder="Add your new todo" [(ngModel)]="inputText">
+    <button [ngClass]="'button button_add'" [disabled]="isAddTaskButtonDisabled()" (click)="addItem()">Add task
+    </button>
   </div>
 </section>

@@ -1,2 +1,3 @@
 <span class="item-text">{{ listItem().text }}</span>
-<button [ngClass]="'button button_delete'" (click)="deleteItem(listItem().id)">Delete</button>
+<app-button [title]="'Delete'" (click)="deleteItem(listItem().id)" [disabled]="false"
+            [cssStyles]="'button button_delete'"></app-button>

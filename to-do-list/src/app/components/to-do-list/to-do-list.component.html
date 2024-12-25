@@ -1,25 +1,35 @@
 <section class="to-do-list">
-  <h1>Todo List</h1>
 
   @if (isLoading) {
     <div class="spinner">
       <mat-spinner [mode]="'indeterminate'"></mat-spinner>
     </div>
   } @else {
-    <ul class="item-list">
-      @for (listItem of listItems; track $index) {
-        <li>
-          <app-to-do-list-item [listItem]="listItem" (deleteItemById)="deleteItem($event)"
-                               [ngClass]="'item'"></app-to-do-list-item>
-        </li>
-      }
-    </ul>
-    <div class="footer-form">
-      <input class="input" placeholder="Add your new todo" [(ngModel)]="inputText">
-      <app-button [title]="'Add task'" [disabled]="isAddTaskButtonDisabled()"
-                  (click)="addItem()" [cssStyles]="'button button_add'"></app-button>
-<!--      <button [ngClass]="'button button_add'" [disabled]="isAddTaskButtonDisabled()" (click)="addItem()">Add task-->
-      <!--      </button>-->
+    <div class="main-container">
+      <div class="list-container">
+        <h1>Todo List</h1>
+        <ul class="item-list">
+          @for (listItem of listItems; track $index) {
+            <li>
+              <app-to-do-list-item [listItem]="listItem" (deleteItemById)="deleteItem($event)"
+                                   [ngClass]="'item' + (selectedListItemId === listItem.id ? ' selected' : '')"
+                                   (click)="selectItem(listItem.id)" appPopUpText></app-to-do-list-item>
+            </li>
+          }
+        </ul>
+        <div class="footer-form">
+          <input class="input" placeholder="Add your new todo" [(ngModel)]="inputText">
+          <app-button [title]="'Add task'" [disabled]="isAddTaskButtonDisabled()"
+                      (click)="addItem()" [cssStyles]="'button button_add'" appPopUpText></app-button>
+        </div>
+        <textarea rows="5" [(ngModel)]="textDescription"></textarea>
+      </div>
+      <span>
+        <h2>Selected Item description</h2>
+        @if (selectedListItemId) {
+          <p>{{ getDescriptionByItemId() }}</p>
+        }
+  </span>
     </div>
   }
 </section>
